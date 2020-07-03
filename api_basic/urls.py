@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import article_list, article_detail, ArticleAPIView, ArticleDetails
+from .views import ArticleAPIView, ArticleDetails
 
 urlpatterns = [
     # path('article/', article_list),
