@@ -8,14 +8,18 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework import generics
-from rest_framework import mixins
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated 
+# from rest_framework import generics
+# from rest_framework import mixins
 
 # from .models import Article
 # Create your views here.
 
-
 class ArticleAPIView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]   
+
     def get(self, request): 
         #pylint: disable=no-member
         articles = Article.objects.all()
@@ -32,6 +36,8 @@ class ArticleAPIView(APIView):
 
 
 class ArticleDetails(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]  
     #pylint: disable=no-member
     def get_object(self, pk):
         try:
